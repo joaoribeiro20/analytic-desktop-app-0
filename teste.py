@@ -1,33 +1,3 @@
-#import tkinter as tk
-#from tkinter import font
-
-#root = tk.Tk()
-#root.title("Hello World")
-# Custom font
-#hello_font = font.Font(family="Helvetica", size=32, weight="bold")
-#label = tk.Label(
-#    root,
-#    text="Hello World",
-#    font=hello_font,
-#    fg="#ff69b4",   # text color
-#    bg="#1e1e1e"    # background color
-#)
-#label.pack(padx=40, pady=40)
-#root.mainloop()
-
-#root = tk.Tk()
-#root.title("Analytic Desktop App")
-#root.geometry("800x600")
-#root.configure(bg="white")
-
-# Create a label
-#label = tk.Label(root, text="Hello, World!", font=("Arial", 16), bg="white")
-#label.pack(pady=20)
-
-#print("Hello, World!")
-
-#root.mainloop()
-
 import tkinter as tk
 from tkinter import font
 
