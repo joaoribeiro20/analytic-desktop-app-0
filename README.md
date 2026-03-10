@@ -1,1 +1,1 @@
-# analytic-desktop-app-0
+# comando para rodar projeto é py Frame.py ou python Frame.py
