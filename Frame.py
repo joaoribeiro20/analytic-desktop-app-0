@@ -10,7 +10,7 @@ title_font = font.Font(family="Helvetica", size=32, weight="bold")
 ui_font = font.Font(family="Helvetica", size=14)
 
 # Title text (replaces Hello World)
-title = tk.Label(root, text="Análise de dados", font=title_font, bg="white", fg="#111")
+title = tk.Label(root, text="Análise de Dados", font=title_font, bg="white", fg="#111")
 title.pack(pady=(30, 10))
 
 # "Box" that will contain the 3 button rows
@@ -38,7 +38,7 @@ def make_row(row, name_text, button_text, command):
 
 # 3 rows (first one as you requested)
 make_row(0, "Gerar Análise",     "Iniciar",          lambda: print("Gerar Análise"))
-make_row(1, "Atualizar dados",   "Atualizar",        lambda: print("Atualizar dados"))
+make_row(1, "Atualizar Dados",   "Atualizar",        lambda: print("Atualizar Dados"))
 make_row(2, "Upload de Arquivos","Selecionar arquivo", lambda: print("Upload de Arquivos"))
 
 root.mainloop()
