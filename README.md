@@ -1,1 +1,4 @@
 # comando para rodar projeto é py Frame.py ou python Frame.py
+
+
+# adicionar docker
