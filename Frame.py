@@ -15,13 +15,21 @@ BUTTON_WIDTH = 18
 # Helper functions
 # -----------------------------------------------------------------------------
 
+# Tracks the currently open balloon - only one can be open at a time
+_open_balloon = {"ref": None}
 
 def show_balloon(parent, message, widget):
-    """Show a balloon popup with the message, positioned to the right of the info button."""
+    """Show a balloon popup with the message, positioned to the right of the info button.
+    Does nothing if a balloon is already open (user must close it first)."""
+    
+    if _open_balloon["ref"] is not None and _open_balloon["ref"].winfo_exists():
+        return  # Balloon already open, do not open another
+
     balloon = tk.Toplevel(parent)
     balloon.withdraw()
     balloon.overrideredirect(True)
     balloon.attributes("-topmost", True)
+    _open_balloon["ref"] = balloon
 
     frame = tk.Frame(balloon, bg="white", bd=1, relief="solid")
     frame.pack(padx=8, pady=8)
@@ -39,6 +47,7 @@ def show_balloon(parent, message, widget):
 
     def close_balloon(event=None):
         balloon.destroy()
+        _open_balloon["ref"] = None
 
     label.bind("<Button-1>", close_balloon)
     frame.bind("<Button-1>", close_balloon)
@@ -117,11 +126,11 @@ def build_ui():
     # Button rows
     rows = [
         ("Gerar Análise", "Iniciar", lambda: print("Gerar Análise"),
-         'Caso tenha inserido dados novos "Upload de arquivos", use o botão "Atualizar" para o relatório incluir os novos dados. \n \nToque na mensagem para fechar!'),
+         'Gerar Análise:\nCaso tenha inserido dados novos "Upload de arquivos", use o botão "Atualizar" para o relatório incluir os novos dados. \n \nToque na mensagem para fechar!'),
         ("Atualizar Dados", "Atualizar", lambda: print("Atualizar Dados"),
-         "Atualiza os dados inseridos em upload, use sempre que tiver inserido novos dados antes de gerar Análise. \n \nToque na mensagem para fechar!"),
+         "Atualizar Dados:\nAtualiza os dados inseridos em upload, use sempre que tiver inserido novos dados antes de gerar Análise. \n \nToque na mensagem para fechar!"),
         ("Upload de Arquivos", "Selecionar arquivo", lambda: print("Upload de Arquivos"),
-         "Selecione os arquivos que serão analisados, você deve usar o botão atualizar para que os novos dados sejam carregados nas novas gerações de análise. \n \nToque na mensagem para fechar!"),
+         "Upload de Arquivos:\nSelecione os arquivos que serão analisados, você deve usar o botão atualizar para que os novos dados sejam carregados nas novas gerações de análise. \n \nToque na mensagem para fechar!"),
     ]
 
     for i, (name_text, btn_text, cmd, hint) in enumerate(rows):
